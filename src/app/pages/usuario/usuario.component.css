@@ -1,0 +1,205 @@
+
+
+img{
+    width:50px;
+    height:50px;
+    position: absolute;
+   
+}
+
+  
+h1{
+    animation: fluido 10s ease-in-out infinite;
+    background: linear-gradient(-45deg, #8b2fee, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 300%;
+      -webkit-background-clip: text;
+              background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 50px;
+      text-align: center;
+   
+      
+        font-weight: 300px;
+       
+      
+        color: #FD2E4A;
+   
+  }
+  
+@keyframes fluido {
+      0% { background-position: 0 50% }
+      50% { background-position: 100% 50% }
+      100% { background-position: 0 50% }
+  }
+
+@import 'https://fonts.googleapis.com/css?family=Raleway';
+body{
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    line-height: 1.42em;
+    color:#4B4A4B;
+    background-color:#FFDAC4;
+}
+
+
+.listado th h1 {
+      font-weight: bold;
+      font-size: 1em;
+      text-align: center;
+        color: #FFFFFF;
+  }
+
+.listado td {
+    font-weight: normal;
+    font-size: 1em;
+    -webkit-box-shadow: 0 2px 2px -2px #0E1119;
+    -moz-box-shadow: 0 2px 2px -2px #0E1119;
+    box-shadow: 0 2px 2px -2px #0E1119;
+}
+
+.listado {
+    text-align: left;
+    overflow: hidden;
+    width: 80%;
+    margin: 0 auto;
+    display: table;
+    padding: 0 0 8em 0;
+    border: 4px solid #9723d5
+}
+
+.listado td, .listado th {
+    padding-bottom: 2%;
+    padding-top: 2%;
+     
+    text-align: center;
+}
+
+.listado tr:nth-child(odd) {
+    background-color: #EEEAE7;
+}
+
+.listado tr:nth-child(even) {
+    background-color: #FFFFFF;
+}
+
+.listado th {
+    background-color: #350133;
+    text-align: center;
+}
+
+.listado td:first-child { 
+    color: #FC1231; 
+}
+.listado tr:hover {
+   background-color: #F7C7F7;
+  -webkit-box-shadow: 0 6px 6px -6px #0E1119;
+   -moz-box-shadow: 0 6px 6px -6px #0E1119;
+   box-shadow: 0 6px 6px -6px #0E1119;
+}
+
+td a {
+      color: #4B4A4B;
+  }
+
+td a:hover {
+      color: #FFFFFF;
+}
+
+.listado td.icono:hover {
+    background-color: #FC1231;
+      
+    box-shadow: #BA0F26 -1px 1px, #BA0F26 -2px 2px, #BA0F26 -3px 3px, #BA0F26 -4px 4px, #BA0F26 -5px 5px, #BA0F26 -6px 6px;
+    transform: translate3d(6px, -6px, 0);
+
+    transition-delay: 0s;
+    transition-duration: 0.4s;
+    transition-property: all;
+    transition-timing-function: line;
+}	
+.table-t{
+    border: 3px solid #390b8f;
+    padding: 7px;
+    margin-left: 15%;
+    margin-top: auto;
+    margin-right: 15%;
+}
+/* TITULO -------------------------------------------------------- */
+#formulario{
+    font-family: sans-serif;
+    background: #be7be8;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    border-top-left-radius: 19px;
+    border-top-right-radius: 19px;
+    border-bottom: 5px solid #aa81f1;
+    margin-bottom:5px; 
+  }
+  /* --------------------------------------------------------------- */
+  /* --------------------------------------------------------------- */
+  /* FORMULARIO: fondo blanco y casillas --------------------------- */
+form{
+    background-color: white;
+    margin:10px;
+    margin:0 auto;
+    border-radius:19px;
+    width: 40%;
+    /* SECUENCIA: para centrar formulario */
+    
+    top: 50%; 
+    left: 50%;
+    
+}
+    /* TAMAÑO LETRA: nombre, apellido, e-mail, etc ----- */
+label{
+        margin-left: 8px;
+        font-size: 12px;
+        padding: 5px;
+        display:block;
+        width: 100%;
+        font-family: sans-serif;
+      }
+    /* -------------------------------------------------- */
+    /* EDICION CADA INPUT: diseño ----------------------- */
+input{
+        margin-bottom:10px; 
+        width: 95%;
+        padding: 2%;
+        margin-left: 10px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        font-style: italic; 
+      }
+      /* Cuando da click dentro de un input --------------- */
+        input:focus{
+          background-color: #F2F2F2;
+        }
+      /* -------------------------------------------------- */
+  /* --------------------------------------------------------------- */
+  /* C U E R P O  -------------------------------------------------- */ 
+
+  /* --------------------------------------------------------------- */
+  /* FUNCION DEL BOTON REGISTRARSE --------- */
+  #button {
+          width: 94%;
+          font-family: sans-serif;
+          font-size:15px;
+          font-weight: bolder;
+          background-color: #32003c;
+          color: #fff;
+          cursor: pointer;
+          margin-bottom:15px;
+          margin-left:10px;
+          border: none;
+          padding: 3%;
+          border-radius: 20px 10px 20px 10px;
+      /* SOMBRA BOTON: darle sommbre al boton "resgistrarse"*/
+          -webkit-box-shadow: 4px 9px 8px -4px rgba(0,0,0,0.75);
+          -moz-box-shadow: 4px 9px 8px -4px rgba(0,0,0,0.75);
+           box-shadow: 4px 9px 8px -4px rgba(0,0,0,0.75);      
+  }
+  #button:hover{
+    background-color: #7FACDE;
+  }

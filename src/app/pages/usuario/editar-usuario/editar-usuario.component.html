@@ -1,0 +1,67 @@
+<!--
+<div class="nav-i">
+    <nav class=" navbar-light" style="background-color: #350133;">
+    
+       <h1>EDITAR USUARIO</h1>
+   </nav>
+</div>
+
+
+
+<div class="table-t">
+
+
+            <form [formGroup]="userForm" (ngSubmit)="guardar($event)" method="POST">
+                <div id="formulario">
+                    <h1> Iniciar Session </h1>
+                </div>
+        
+                <div id="tabla-formulario">
+                    
+                    <label for="nombre">NOMBRE </label>
+                    <input placeholder="Escriba NOMBRE" formControlName="nombre" type="text" id="tabla5">
+
+                    <label for="email">Email </label>
+                    <input placeholder="Escriba Email" formControlName="email" type="text" id="tabla5">
+        
+                    <label for="contrasena">Contrasena </label>
+                    <input placeholder="Escriba contrasena" formControlName="contrasena" type="password" id="tabla6">
+        
+                </div>
+               
+                
+          
+    
+    
+                <button name="registro" type="submit" class="btn btn-danger btn-sm m-2"  id="button"> Guardar! </button>
+          </form>
+</div>
+
+
+<h1>Listado de POKEMONES</h1>
+    <table class="listado">
+        <thead>
+            <tr>
+                <th><h1>CODIGO</h1></th>
+                <th><h1>NOMBRE</h1></th>
+                <th><h1>EMAIL</h1></th>
+                <th><h1>CONTRASENA</h1></th>
+             
+                <th colspan="2"><h1>OPCIONES</h1></th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let item of usuario">
+            <tr>
+                <th>{{item.codigo}}</th>
+                <td>{{item.nombre}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.contrasena}}</td>
+                
+                <td></td>
+                <td>
+                    <button type="button" (click)="update(item)" class="btn btn-success btn-sm m-2">EDITAR</button>
+                  </td>
+            
+        </tbody>
+        
+    </table>-->
