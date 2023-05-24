@@ -3,6 +3,9 @@ import { FormControl, FormGroup , FormBuilder, Validators} from '@angular/forms'
 import { UsuariosService } from 'src/app/Services/usuarios.service';
 
 import { Route, Router } from '@angular/router';
+import { AuthService } from 'src/app/Services/auth.service';
+import { TokenService } from 'src/app/Services/token.service';
+import { LoginDto } from 'src/app/model/LoginDto';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,7 +13,7 @@ import { Route, Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  userForm!: FormGroup;
+  loginForm!: FormGroup;
 
   poke: any;
 
@@ -18,6 +21,8 @@ export class LoginComponent {
     public fb: FormBuilder,
     public userSer: UsuariosService,
     private router: Router,
+    private authService: AuthService,
+    private tokenService: TokenService,
   ) {
   
   }
@@ -25,39 +30,35 @@ export class LoginComponent {
 
 
   ngOnInit(): void {
-    this.userForm = this.fb.group({
+    this.loginForm = this.fb.group({
       
-      email: ['', Validators.required],
-      contrasena: ['', Validators.required]
-    });;
-
-    this.userSer.listar().subscribe(resp => {
-      this.poke = resp;
-      console.log(resp);
-    },
-      error => { 
-        console.error(error);
-       }
-
-    )
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
   }
+
   guardar(event: Event): void {
-    event.preventDefault();
-   
-    if(this.userForm.valid){
-      const value = this.userForm.value;
-        this.userSer.crearUsuario(this.userForm.value).subscribe(resp => {
-
-          this.userForm.reset();
-          this.poke.push(resp);
-      
+    if (this.loginForm.valid) {
+      debugger
+      const dto = new LoginDto(this.loginForm.value.username, this.loginForm.value.password);
+      debugger
+      this.authService.login(dto).subscribe({
+        next: (data) => {
+          debugger
+          this.tokenService.setToken(data.accessToken);
+          debugger
+          this.authService.setPersonaLogeada(JSON.stringify(data));
         },
-        error => {
-          console.error(error)
-        });
-        
+        error: (error) => { alert(`error: Usuario o contrasena incorrectas`); },
+        complete: () => {
+          sessionStorage.setItem("isLoggedIn", 'true');
+          window.location.replace('/');
+        }
+      });
+    }else{
+      alert('Debe completar todos los campos');
+    }
+  
   }
-
-}
 
 }

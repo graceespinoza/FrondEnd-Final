@@ -1,45 +1,53 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import  {Observable} from 'rxjs';
-import { Usuarios } from '../model/usuarios';
-import { Roles } from '../model/Roles';
 
+import { Roles } from '../model/Roles';
+import { Usuarios } from '../model/Usuarios';
+
+
+const jwt = localStorage.getItem('auth-token');
+const APIS: string = "http://localhost:8080/app"
+ 
+const headers = new HttpHeaders({
+  'Authorization': `Bearer ${jwt}`
+});
 @Injectable({
   providedIn: 'root'
 })
 export class UsuariosService {
-
-  private APIS = "http://localhost:8080/app/usuario"
-  private API = "http://localhost:8080/app/login"
+  
+ 
   constructor(
     private httpCliente: HttpClient
 
   ) { }
 
-  public listar(){
-    return this.httpCliente.get<Usuarios>(this.APIS);
+listar(){
+    return this.httpCliente.get<Usuarios[]>(`${APIS}/usuario` , {headers});
   }
 
-public eliminar(id: number) {
-  return this.httpCliente.put<Usuarios[]>(this.APIS + "/eliminar/" ,id);
+eliminar(id: number) {
+  return this.httpCliente.put<Usuarios[]>(`${APIS}/usuario/eliminar/${id}`, {headers});
 }
-public crearUsuario(usuario: Usuarios){
+crearUsuario(usuario: Usuarios){
   //http://localhost:8080/api/usuario
-  return this.httpCliente.post<Usuarios>(this.APIS, usuario);
+  return this.httpCliente.post<Usuarios>(`${APIS}/usuario`, usuario,  {headers});
 }
-public registrarse(usuario: Usuarios){
-  return this.httpCliente.post<Usuarios>(this.API +"/signup", usuario);
+registrarseUsuario(usuario: Usuarios){
+  return this.httpCliente.post<Usuarios>(`${APIS}/login/signup`, usuario, {headers});
 }
-public obtenerUsuario(id: number){
+obtenerUsuario(id: number){
   //http://localhost:8080/api/usuario/${id}`
-  return this.httpCliente.get<Usuarios>(`http://localhost:8080/app/usuario/${id}`);
+  return this.httpCliente.get<Usuarios>(`${APIS}/usuario/${id}` , {headers});
 }
-public updateUsuario(id:number ,usuario: Usuarios){
-  return this.httpCliente.put<Usuarios>(`http://localhost:8080/app/usuario/editar/${id}`, usuario);
+updateUsuario(id:number ,usuario: Usuarios){
+  return this.httpCliente.put<Usuarios>(`${APIS}/usuario/editar/${id}`, usuario,  {headers});
 }
-public traerRoles(){
-  return this.httpCliente.get<Roles[]>(`http://localhost:8080/api/usuario/roles`);
+traerRoles(){
+  return this.httpCliente.get<Roles[]>(`${APIS}/usuario/roles`,  {headers});
 }
+
 }
 
 

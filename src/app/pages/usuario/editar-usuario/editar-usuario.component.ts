@@ -2,8 +2,9 @@ import { Component, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { UsuariosService } from 'src/app/Services/usuarios.service';
 import { Router } from '@angular/router';
-import { Usuarios } from 'src/app/model/usuarios';
+import { Usuarios } from 'src/app/model/Usuarios';
 import { Roles } from 'src/app/model/Roles';
+import { TokenService } from 'src/app/Services/token.service';
 @Component({
   selector: 'app-editar-usuario',
   templateUrl: './editar-usuario.component.html',
@@ -36,12 +37,13 @@ export class EditarUsuarioComponent {
     public userSer: UsuariosService,
     private router: Router,
     private formBuilder: FormBuilder,
+    private tokenService: TokenService
   ) { }
-
+  readonlyMode: boolean = true;
 
   ngOnInit() {
-
-    this.userForm = this.formBuilder.group({
+    if(this.tokenService.isAdmin()){
+     this.userForm = this.formBuilder.group({
 
       nombres: new FormControl('', [Validators.required]),
       username: new FormControl('', [Validators.required]),
@@ -74,9 +76,13 @@ export class EditarUsuarioComponent {
         });
       }
     });
+    }
+  
+  
   }
 
   volver() {
+    localStorage.removeItem('idUsuario');//a mejorar
     this.router.navigate(['usuario']);
   }
   toJson(value: any) {
@@ -97,10 +103,16 @@ export class EditarUsuarioComponent {
       console.log(usuario);
       this.userSer
         .updateUsuario(usuario.idUsuario!, usuario)
-        .subscribe((data) => {
+        .subscribe( {next: (data) => {
           this.usuario = data;
           alert('Se actualizo con exito');
           this.router.navigate(['usuario']);
+        },
+        error: (error) => {
+          console.log("Ocurrio un error al actualizar vuelva a intentar"); },
+          complete: () => {
+            localStorage.removeItem('idUsuario');
+           }
         });
     } else {
       alert('Debe completar todos los campos');

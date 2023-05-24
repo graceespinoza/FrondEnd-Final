@@ -8,6 +8,8 @@ body {
 }
 a {
 	text-decoration: none;
+	margin: 5px;
+    padding: 5px;
 }
 li {
 	list-style: none;
@@ -18,9 +20,20 @@ li {
 	align-items: center;
 	justify-content: space-between;
 	padding: 20px;
-	background-color: teal;
+	background-color: rgb(65, 16, 108);
 	color: #fff;
 	}
+.navbarm{
+	background-color: rgb(223, 198, 245);
+	display: flex;
+	padding: 20px;
+
+
+
+	justify-content:center;
+   
+   
+}
 .nav-links a {
 	color: #fff;
 	}
@@ -38,7 +51,7 @@ li {
 	}
 	
 .menu li:hover {
-	background-color: #4c9e9e;
+	background-color: #cd9ee9;
 	border-radius: 5px;
 	transition: 0.3s ease;
 	}

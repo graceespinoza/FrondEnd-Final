@@ -2,7 +2,7 @@ import { Component, Output, EventEmitter, OnInit  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsuariosService } from 'src/app/Services/usuarios.service';
 import { Roles } from 'src/app/model/Roles';
-import { Usuarios } from 'src/app/model/usuarios';
+import { Usuarios } from 'src/app/model/Usuarios';
 
 @Component({
   selector: 'app-nuevo-usuario',

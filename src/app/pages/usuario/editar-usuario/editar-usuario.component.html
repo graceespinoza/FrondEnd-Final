@@ -1,4 +1,4 @@
-<!--
+
 <div class="nav-i">
     <nav class=" navbar-light" style="background-color: #350133;">
     
@@ -21,11 +21,30 @@
                     <label for="nombre">NOMBRE </label>
                     <input placeholder="Escriba NOMBRE" formControlName="nombre" type="text" id="tabla5">
 
+                    <label for="username">Username </label>
+                    <input placeholder="Escriba username" formControlName="username" type="text" id="tabla5">
+        
+
                     <label for="email">Email </label>
                     <input placeholder="Escriba Email" formControlName="email" type="text" id="tabla5">
+
+                    <label for="direccion">Direccion </label>
+                    <input placeholder="Escriba Email" formControlName="direccion" type="text" id="tabla5">
         
-                    <label for="contrasena">Contrasena </label>
-                    <input placeholder="Escriba contrasena" formControlName="contrasena" type="password" id="tabla6">
+                    <label for="input-roles" class="form-label">Roles</label>
+                    <select class="form-select" formControlName="roles" id="tabla6">
+                      <option *ngFor="let role of rol" [value]="toJson(role)">
+                        {{ role.name }}
+                      </option>
+                    </select>
+                    <label for="input-estado" class="form-label">Estado</label>
+                    <select class="form-select" formControlName="status" id="input-estado">
+                      <option value="A">Activo</option>
+                      <option value="I">Inactivo</option>
+                    </select>
+                    <button type="button" class="btn btn-secondary" routerLink="/usuario">
+                        Volver
+                      </button>
         
                 </div>
                
@@ -38,15 +57,17 @@
 </div>
 
 
-<h1>Listado de POKEMONES</h1>
+<!-- <h1>Listado de POKEMONES</h1>
     <table class="listado">
         <thead>
             <tr>
                 <th><h1>CODIGO</h1></th>
                 <th><h1>NOMBRE</h1></th>
                 <th><h1>EMAIL</h1></th>
-                <th><h1>CONTRASENA</h1></th>
-             
+                <th><h1>Username</h1></th>
+                <th><h1>Roles</h1></th>
+                <th><h1>Estado</h1></th>
+                <th><h1>Direccion</h1></th>
                 <th colspan="2"><h1>OPCIONES</h1></th>
             </tr>
         </thead>
@@ -55,13 +76,16 @@
                 <th>{{item.codigo}}</th>
                 <td>{{item.nombre}}</td>
                 <td>{{item.email}}</td>
-                <td>{{item.contrasena}}</td>
+                <td>{{item.username}}</td>
+                <td>{{item.roles}}</td>
+                <td>{{item.estado}}</td>
+                <td>{{item.direccion}}</td>
                 
                 <td></td>
                 <td>
-                    <button type="button" (click)="update(item)" class="btn btn-success btn-sm m-2">EDITAR</button>
-                  </td>
+                    <!-- <button type="button" (click)="update(item)" class="btn btn-success btn-sm m-2">EDITAR</button> -->
+                  <!-- </td>
             
         </tbody>
-        
-    </table>-->
+         -->
+    <!-- </table> --> -->

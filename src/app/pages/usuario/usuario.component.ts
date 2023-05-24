@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import {  FormControl, FormGroup, NgForm, Validators  } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TokenService } from 'src/app/Services/token.service';
 import { UsuariosService } from 'src/app/Services/usuarios.service';
 import { Roles } from 'src/app/model/Roles';
-import { Usuarios } from 'src/app/model/usuarios';
+import { Usuarios } from 'src/app/model/Usuarios';
 @Component({
   selector: 'app-usuario',
   templateUrl: './usuario.component.html',
@@ -16,12 +17,17 @@ export class UsuarioComponent {
   usuarioIdSelected!: number;
   roles?:Roles;
 
+  isAdmin: boolean =false;
+
+  page!: number;
+
   pokemonSelect?:any;
 
   constructor(
    
     public userSer: UsuariosService,
     private router: Router,
+    private tokenService: TokenService
   ) { }
 
     obtenerUsuario(user:Usuarios){
@@ -34,16 +40,38 @@ export class UsuarioComponent {
     }
     usuarios: Usuarios[] = [];
     ngOnInit() {
-      this.userSer.listar()
-   //   .subscribe((data: Usuarios[]) => {
-     //   this.usuarios = data.filter((user: Usuarios) => user.status);
-     // });
-  }
+      if (this.tokenService.isAdmin() || this.tokenService.isMod()) {
+        this.isAdmin = this.tokenService.isAdmin(); //Cambia el valor de admin para usarlo en el html
+        this.userSer.listar().subscribe({
+          next: (data: Usuarios[]) => {
+            this.usuarios =data.filter((user : Usuarios) =>
+            user.status);
+            
+          },
+          error: (error) =>{
+            console.log("Ocurrio un error");
+            this.tokenService.logout();
+            window.location.replace('/login');
+
+          },
+          complete: () => {},
+        });
+      }else{
+        this.router.navigate(['']);
+      }
+         
+         
+        
+    }
   delete(id: number) {
-    this.userSer.eliminar(id)
-    .subscribe((data: Usuarios[]) => {
-      this.usuarios = data.filter((user: Usuarios) => user.status);
-    });
+    this.userSer.eliminar(id).subscribe ({
+      next:  (data: Usuarios[]) => {
+        this.usuarios = data.filter((user: Usuarios) => user.status);
+      },error: (error) =>{
+        console.log("Ocurrio un error al eliminar el usuario");
+      }
+    })
+    
   }
   onUsuarioGuardado(user: Usuarios) {
     this.usuarios.push(user);

@@ -1,37 +1,33 @@
 <nav class="navbar">
     <!-- LOGO -->
-   <div class="logo">grace irene
+   <div class="logo">PLANTILLA
 
        
     </div>
 
     <!-- NAVIGATION MENU -->
-    <ul class="nav-links">
+    
+ </nav>
+ <nav class="navbarm">
+    <div class="menu">
+        <ul class="nav-links">
 
-        <!-- USING CHECKBOX HACK -->
-        <!-- <input type="checkbox" id="checkbox_toggle" /> -->
-        <!-- <label for="checkbox_toggle" class="hamburger">&#9776;</label> -->
+       
+            <div *ngIf="!isLogged"  >
+             
+                    <a type="button" class="btn btn-danger" routerLink="/login">Inicia sesión 
+                        <i class="bi bi-arrow-right-square-fill"></i>
+                    </a>
 
-        <!-- NAVIGATION MENUS -->
-        <div class="menu">
+              
+                    <a type="button" class="btn btn-warning" routerLink="/register">Registrate 
+                        <i class="bi bi-arrow-right-square-fill"></i>
+                    </a>
 
-            <li>
-                <a routerLink="/usuario" href="#">USUARIOS</a>
-            </li>
-            <li>
-                <a href="/usuario/editar">EDITAR USUARIOS</a>
-            </li>
-
-            <!-- <li class="services">
-                <a href="/reserva">Reserva de Inmueble</a>
-            </li> -->
-
-            <li>
-                <a href="/login">LOGIN </a>
-            </li>
-            <li>
-                <a href="/register">Register</a>
-            </li>
-            </div>
+              
+           
+           
+            </div> 
         </ul>
+    </div>
  </nav>

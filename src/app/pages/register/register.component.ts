@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl , Validators, FormBuilder} from '@angular/forms';
 import { UsuariosService } from 'src/app/Services/usuarios.service';
  import { Router } from '@angular/router';
-import { Usuarios } from 'src/app/model/usuarios';
+import { Usuarios } from 'src/app/model/Usuarios';
  @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -47,7 +47,7 @@ export class RegisterComponent {
         status: '',
         roles: []
       };
-      this.userSer.registrarse(usuario).subscribe(
+      this.userSer.registrarseUsuario(usuario).subscribe(
         {
           next: () => {
             alert('Usuario creado');
