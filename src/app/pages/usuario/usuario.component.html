@@ -1,28 +1,30 @@
 
 <h2>Listado </h2>
+    <!-- <button *ngIf="isAdmin" class="btn btn-info m-2" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#modal-nuevoUsuario">Agregar nuevo <i class="bi bi-person-add"></i></button> -->
     <table class="listado">
         <thead>
             <tr>
-                <th><h1>CODIGO</h1></th>
+               
                 <th><h1>NOMBRE</h1></th>
                 <th><h1>USERNAME</h1></th>
                 <th><h1>EMAIL</h1></th>
                 <th><h1>ROLES</h1></th>
                 <th><h1>ESTADO</h1></th>
-                <th colspan="2"><h1>OPCIONES</h1></th>
+                <th colspan=""><h1>OPCIONES</h1></th>
+                <th scope="col" *ngIf="isAdmin">Acciones</th>
             </tr>
         </thead>
-        <tbody *ngFor="let item of usuarios; let i = index">
+        <tbody *ngFor="let item of usuarios">
             <tr>
-                <th>{{item.idUsuario}}</th>
+              
                 <td>{{item.nombres}}</td>
                 <td>{{item.username}}</td>
                 <td>{{item.email}}</td>
-                <td *ngFor="let rol of item.roles">{{ rol.name == "ROLE_MODERATOR"? "Moderador":(rol.name == "ROLE_USER"?"Usuario":"Administrador") }}</td>
+                <td *ngFor="let rol of item.roles">
+                    {{ rol.name == "ROLE_MODERATOR"? "Moderador":(rol.name == "ROLE_USER"?"Usuarios":"Administrador") }}</td>
                 <td>{{ item.status == "A"? "Activo" : "Inactivo" }}</td>
-                <td></td>
                 <td>
-                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-confirmacion" (click)="obtenerUsuario(item)">Eliminar</button>
+                    <button class="btn btn-danger" data-bs-toggle="modal"  (click)="delete">Eliminar</button>
                     <a class="btn btn-secondary" (click)="obtenerUsuarioId(item)">Editar</a>
                </td>
 

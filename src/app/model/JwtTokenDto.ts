@@ -6,10 +6,10 @@ export class JwtTokenDto {
     direccion: string;
     status: string;
     roles: string[];
-    tokenType: string;
-    accessToken: string;
+    type: string;
+    token: string;
 
-    constructor(username: string, password: string, idUsuario: number, nombres: string, direccion: string, status: string, roles: string[], tokenType: string, accessToken: string) {
+    constructor(username: string, password: string, idUsuario: number, nombres: string, direccion: string, status: string, roles: string[], type: string, token: string) {
         this.username = username;
         this.password = password;
         this.idUsuario = idUsuario;
@@ -17,8 +17,8 @@ export class JwtTokenDto {
         this.direccion = direccion;
         this.status = status;
         this.roles = roles;
-        this.tokenType = tokenType;
-        this.accessToken = accessToken;
+        this.type = type;
+        this.token = token;
     }
 }
 

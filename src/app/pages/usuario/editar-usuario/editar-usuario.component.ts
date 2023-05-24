@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder , ReactiveFormsModule} from '@angular/forms';
 import { UsuariosService } from 'src/app/Services/usuarios.service';
 import { Router } from '@angular/router';
 import { Usuarios } from 'src/app/model/Usuarios';
@@ -14,9 +14,9 @@ export class EditarUsuarioComponent {
 
 
   pokemonSelect?: any;
-  userForm!: FormGroup;
+  myGroup!: FormGroup;
   usuario!: Usuarios;
-  rol: Roles[]=[]; 
+  rol: Roles[] = []; 
 
   @Input() idUsuarioEditar!: Usuarios;
   id = localStorage.getItem('idUsuario');
@@ -43,7 +43,7 @@ export class EditarUsuarioComponent {
 
   ngOnInit() {
     if(this.tokenService.isAdmin()){
-     this.userForm = this.formBuilder.group({
+     this.myGroup = this.formBuilder.group({
 
       nombres: new FormControl('', [Validators.required]),
       username: new FormControl('', [Validators.required]),
@@ -52,9 +52,10 @@ export class EditarUsuarioComponent {
       status: new FormControl('', [Validators.required]),
       roles: new FormControl('', [Validators.required]),
     });
-    this.userSer.traerRoles().subscribe({ //esta funcion traigo los roles
-      next: (data :Roles[] )=> {
-        this.rol =data;
+    debugger
+    this.userSer.traerRoles().subscribe({ //esta funcion traigo los roles   
+      next: (data: Roles[]) => {
+        this.rol = data;
       },
       error: (error) =>{
         console.log("Ocurrio un error cuando se trae los usuarios");
@@ -64,9 +65,9 @@ export class EditarUsuarioComponent {
       next: (data) => {
         this.usuario = data;
       },
-      error: (error) => { console.log(`Ocurrió un error al traer el usuario ${error.status}`); },
+      error: (error) => { console.log("Ocurrió un error al traer el usuario"); },
       complete: () => {
-        this.userForm.patchValue({
+        this.myGroup.patchValue({
           username: this.usuario.username,
           email: this.usuario.email,
           direccion: this.usuario.direccion,
@@ -88,14 +89,14 @@ export class EditarUsuarioComponent {
   toJson(value: any) {
     return JSON.stringify(value);
   }
-  guardar(event : Event) {
-    if (this.userForm.valid) {
-      const usuario: Usuarios= {
+  guardar(event  :Event) {
+    if (this.myGroup.valid) {
+      const usuario: Usuarios = {
         idUsuario: this.usuario.idUsuario,
-        nombres: this.userForm.value.nombres,
-        direccion: this.userForm.value.direccion,
-        status: this.userForm.value.status,
-        roles: [JSON.parse(this.userForm.value.roles)],
+        nombres: this.myGroup.value.nombres,
+        direccion: this.myGroup.value.direccion,
+        status: this.myGroup.value.status,
+        roles: [JSON.parse(this.myGroup.value.roles)],
         username: '',
         email: '',
         password: ''

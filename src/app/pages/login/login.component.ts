@@ -15,7 +15,7 @@ export class LoginComponent {
 
   loginForm!: FormGroup;
 
-  poke: any;
+ 
 
   constructor(
     public fb: FormBuilder,
@@ -31,7 +31,6 @@ export class LoginComponent {
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
@@ -39,20 +38,23 @@ export class LoginComponent {
 
   guardar(event: Event): void {
     if (this.loginForm.valid) {
-      debugger
       const dto = new LoginDto(this.loginForm.value.username, this.loginForm.value.password);
-      debugger
       this.authService.login(dto).subscribe({
         next: (data) => {
-          debugger
-          this.tokenService.setToken(data.accessToken);
-          debugger
+          this.tokenService.setToken(data.token);
           this.authService.setPersonaLogeada(JSON.stringify(data));
+          debugger
+          alert ('USUARIO LOGEADO EXITOSAMENTE');
+          debugger
+          //this.router.navigate(['']);
         },
-        error: (error) => { alert(`error: Usuario o contrasena incorrectas`); },
+        error: (error) => { alert("error: Usuario o contrasena incorrectas"); },
         complete: () => {
+          debugger
           sessionStorage.setItem("isLoggedIn", 'true');
-          window.location.replace('/');
+          debugger
+          window.location.replace('usuario');
+          debugger
         }
       });
     }else{

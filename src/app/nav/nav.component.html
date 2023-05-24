@@ -8,26 +8,24 @@
     <!-- NAVIGATION MENU -->
     
  </nav>
- <nav class="navbarm">
-    <div class="menu">
-        <ul class="nav-links">
+    <nav class="navbarm">
+        <div class="menu">
+            <ul class="nav-links">
+                <div *ngIf="!isLogged"  >
+                
+                        <a type="button" class="btn btn-danger" routerLink="/login">Inicia sesión 
+                            <i class="bi bi-arrow-right-square-fill"></i>
+                        </a>
 
-       
-            <div *ngIf="!isLogged"  >
-             
-                    <a type="button" class="btn btn-danger" routerLink="/login">Inicia sesión 
-                        <i class="bi bi-arrow-right-square-fill"></i>
-                    </a>
+                
+                        <a type="button" class="btn btn-warning" routerLink="/register">Registrate 
+                            <i class="bi bi-arrow-right-square-fill"></i>
+                        </a>
 
-              
-                    <a type="button" class="btn btn-warning" routerLink="/register">Registrate 
-                        <i class="bi bi-arrow-right-square-fill"></i>
-                    </a>
-
-              
-           
-           
-            </div> 
-        </ul>
-    </div>
+                
+            
+            
+                </div> 
+            </ul>
+        </div>
  </nav>

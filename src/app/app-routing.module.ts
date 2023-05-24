@@ -5,6 +5,7 @@ import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { EditarUsuarioComponent } from './pages/usuario/editar-usuario/editar-usuario.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { NuevoUsuarioComponent } from './pages/usuario/nuevo-usuario/nuevo-usuario.component';
 const routes: Routes = [
  {
   
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'usuario/editar',
     component: EditarUsuarioComponent,
+  },
+  {
+    path: 'usuario/nuevo',
+    component: NuevoUsuarioComponent,
   },
   {
     path: 'login',

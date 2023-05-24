@@ -1,1 +1,39 @@
-<p>nuevo-usuario works!</p>
+<div class="table-t">
+
+    <form [formGroup]="form" (ngSubmit)="guardar()"method="POST">
+        <div id="formulario"> 
+          <h1> CREAR NUEVO USUARIO</h1>
+        </div>
+          
+                <div id="tabla-formulario">
+                    <label for="nombres">Nombres</label>
+                    <input placeholder="Ingrese su nombre..." formControlName="nombres" type="text"  id="tabla1">
+                    
+                    <label for="direccion">Direccion</label>
+                    <input placeholder="Ingrese su direccion..." formControlName="direccion" type="text"  id="tabla2">
+
+                    <label for="email">Email</label>
+                    <input placeholder="Ingrese su email..." formControlName="email" type="text"  id="tabla3">
+          
+                    <label for="username">Username</label>
+                    <input placeholder="Ingrese su username..." formControlName="username" type="text"  id="tabla4"> 
+
+                    <label for="password">PASSWORD</label>
+                    <input placeholder="Ingrese su password..." formControlName="password" type="password"  id="tabla5">
+
+
+                    <label for="ROLES" class="form-label">Roles</label>
+                    <select formControlName="roles" id="tabla6">
+                      <option *ngFor="let role of roles" [value]="toJson(role)">{{ role.name }} </option>
+                    </select>
+                    
+                  <label for="descripcion">ESTADO </label>
+                  <select  aria-label="categoria" formControlName="status"  id="tabla"> ESTADO
+                      <option value="A">A </option>
+                      <option value="I">I </option>
+                      
+                  </select>   
+       </div>
+                <button name="registro" type="submit" class="btn btn-danger btn-sm m-2"  id="button"> Guardar! </button>
+          </form>
+</div>

@@ -11,34 +11,35 @@
 <div class="table-t">
 
 
-            <form [formGroup]="userForm" (ngSubmit)="guardar($event)" method="POST">
+            <form [formGroup]="myGroup" (ngSubmit)="guardar($event)" method="POST">
                 <div id="formulario">
                     <h1> Iniciar Session </h1>
                 </div>
         
                 <div id="tabla-formulario">
                     
-                    <label for="nombre">NOMBRE </label>
-                    <input placeholder="Escriba NOMBRE" formControlName="nombre" type="text" id="tabla5">
+                    <label for="nombres">NOMBRE </label>
+                    <input placeholder="Escriba NOMBRE" formControlName="nombres" type="text" id="tabla1">
 
                     <label for="username">Username </label>
-                    <input placeholder="Escriba username" formControlName="username" type="text" id="tabla5">
+                    <input placeholder="Escriba username" formControlName="username" type="text" id="tabla2">
         
 
                     <label for="email">Email </label>
-                    <input placeholder="Escriba Email" formControlName="email" type="text" id="tabla5">
+                    <input placeholder="Escriba Email" formControlName="email" type="text" id="tabla3">
 
                     <label for="direccion">Direccion </label>
-                    <input placeholder="Escriba Email" formControlName="direccion" type="text" id="tabla5">
+                    <input placeholder="Escriba Email" formControlName="direccion" type="text" id="tabla4">
         
-                    <label for="input-roles" class="form-label">Roles</label>
-                    <select class="form-select" formControlName="roles" id="tabla6">
-                      <option *ngFor="let role of rol" [value]="toJson(role)">
-                        {{ role.name }}
+                    <label for="roles">Roles</label>
+                    <select  formControlName="roles" id="tabla5">
+                      <option *ngFor="let roles of rol" [value]="toJson(roles)">
+                        {{roles.name}}
                       </option>
                     </select>
-                    <label for="input-estado" class="form-label">Estado</label>
-                    <select class="form-select" formControlName="status" id="input-estado">
+
+                    <label for="estado" >Estado</label>
+                    <select  formControlName="status" id="table6">
                       <option value="A">Activo</option>
                       <option value="I">Inactivo</option>
                     </select>
@@ -47,11 +48,6 @@
                       </button>
         
                 </div>
-               
-                
-          
-    
-    
                 <button name="registro" type="submit" class="btn btn-danger btn-sm m-2"  id="button"> Guardar! </button>
           </form>
 </div>

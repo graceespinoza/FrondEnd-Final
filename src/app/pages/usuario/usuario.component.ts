@@ -21,7 +21,6 @@ export class UsuarioComponent {
 
   page!: number;
 
-  pokemonSelect?:any;
 
   constructor(
    
@@ -30,7 +29,7 @@ export class UsuarioComponent {
     private tokenService: TokenService
   ) { }
 
-    obtenerUsuario(user:Usuarios){
+    obtenerUsuario(user: Usuarios){
       this.usuarioselect = user;
     }
   
@@ -40,8 +39,7 @@ export class UsuarioComponent {
     }
     usuarios: Usuarios[] = [];
     ngOnInit() {
-      if (this.tokenService.isAdmin() || this.tokenService.isMod()) {
-        this.isAdmin = this.tokenService.isAdmin(); //Cambia el valor de admin para usarlo en el html
+        //this.isAdmin = this.tokenService.isAdmin(); //Cambia el valor de admin para usarlo en el html
         this.userSer.listar().subscribe({
           next: (data: Usuarios[]) => {
             this.usuarios =data.filter((user : Usuarios) =>
@@ -56,9 +54,7 @@ export class UsuarioComponent {
           },
           complete: () => {},
         });
-      }else{
-        this.router.navigate(['']);
-      }
+      
          
          
         
